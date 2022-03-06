@@ -98,3 +98,9 @@ function geral() {
         painel.style.fontSize = "25px";
     }
 }
+
+/* problemas
+    // substuir: não adicionar "." se o ultimo indice for "."
+    // adicionar: límite de caracter nos operadores em geral
+    // modificar tema claro
+*/
