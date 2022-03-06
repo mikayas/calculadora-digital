@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width initial-scale=1"/>
+        <link rel="stylesheet" href="style.css">
+        <title>calculadora digital</title>
+    </head>
+    <body>
+        <div id="calculadora-app" onclick="geral()">
+            <div id="bloco-painel">
+                <div id="painel-banco"></div>
+                <div id="painel-aviso"></div>
+                <div id="painel-fronte"></div>
+            </div>
+            <div id="bloco-teclado">
+                <div class="teclado-linha">
+                    <button class="botao config" onclick="on()">on</button>
+                    <button class="botao config" onclick="voltar()">c</button>
+                    <button class="botao config" onclick="apagar()">del</button>
+                    <button class="botao operador" onclick="operador('/')">/</button>
+                </div>
+                <div class="teclado-linha">
+                    <button class="botao numero" onclick="inserir('7')">7</button>
+                    <button class="botao numero" onclick="inserir('8')">8</button>
+                    <button class="botao numero" onclick="inserir('9')">9</button>
+                    <button class="botao operador" onclick="operador('*')">x</button>
+                </div>
+                <div class="teclado-linha">
+                    <button class="botao numero" onclick="inserir('4')">4</button>
+                    <button class="botao numero" onclick="inserir('5')">5</button>
+                    <button class="botao numero" onclick="inserir('6')">6</button>
+                    <button class="botao operador" onclick="operador('+')">+</button>
+                </div>
+                <div class="teclado-linha">
+                    <button class="botao numero" onclick="inserir('1')">1</button>
+                    <button class="botao numero" onclick="inserir('2')">2</button>
+                    <button class="botao numero" onclick="inserir('3')">3</button>
+                    <button class="botao operador" onclick="operador('-')">-</button>
+                </div>
+                <div class="teclado-linha">
+                    <button class="botao numero" onclick="inserir('0')">0</button>
+                    <button class="botao numero" onclick="virgula('.')">•</button>
+                    <button class="botao operador" onclick="calcular()">=</button>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

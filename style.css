@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+:root {
+    --corFundo1: #13122e;
+    --corFundo2: #201f47;
+    --corFundo3: #040079;
+    --cor0: white;
+    --cor1: gray;
+    --cor2: orange;
+    --cor3: red;
+    --cor4: #282566;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+    user-select: none;
+}
+
+body {
+    background: linear-gradient(130deg, var(--corFundo1), var(--corFundo2), var(--corFundo3))fixed;
+}
+
+#calculadora-app {
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#bloco-painel {
+    width: 100%;
+    padding: 100px 5px 10px 5px;
+    text-align: center;
+}
+
+#painel-banco {
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+    color: var(--cor1);
+}
+
+#painel-aviso {
+    height: 30px;
+    padding: 5px;
+    font-size: 15px;
+    color: var(--cor3);
+}
+
+#painel-fronte {
+    height: 60px;
+    font-size: 50px;
+    padding: 5px;
+    color: var(--cor0);
+    transition-duration: 0.5s;
+}
+
+#bloco-teclado { 
+    text-align: center;
+}
+
+.botao {
+    width: 50px;
+    height: 50px;
+    margin: 4px;
+    border: none;
+    border-radius: 10px;
+    background: none;
+    transition-duration: 0.3s;
+}
+
+.botao:hover {
+    background-color: var(--cor4);
+}
+
+.config {color: var(--cor3);}
+
+.numero {color: var(--cor0);}
+
+.operador {color: var(--cor2);}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --corFundo1: #00ffd9;
+        --corFundo2: #7ef4ff;
+        --corFundo3: #ffffff;
+        --cor0: rgb(26, 0, 75);
+        --cor1: gray;
+        --cor2: #168500;
+        --cor3: red;
+        --cor4: #24cfd4;
+    }
+}
