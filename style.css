@@ -1,97 +1,123 @@
 @charset "utf-8";
 
 :root {
-    --corFundo1: #13122e;
-    --corFundo2: #201f47;
-    --corFundo3: #040079;
-    --cor0: white;
-    --cor1: gray;
-    --cor2: orange;
-    --cor3: red;
-    --cor4: #282566;
+    --ColorDefault1: #ffffff;
+    --ColorDefault2: #000000;
+    --ColorGray1: #808080;
+    --ColorPrimary1: #13122e;
+    --ColorPrimary2: #201f47;
+    --ColorPrimary3: #282566;
+    --ColorPrimary4: #040079;
+    --ColorSecondary1: #ffa500;
+    --ColorSecondary2: #ff6161;
 }
 
 * {
+    border: 0;
     box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
     font-family: sans-serif;
+    font-size: 16px;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    outline: 0;
     user-select: none;
 }
 
 body {
-    background: linear-gradient(130deg, var(--corFundo1), var(--corFundo2), var(--corFundo3))fixed;
+    background: linear-gradient(130deg, 
+        var(--ColorPrimary1), 
+        var(--ColorPrimary2),
+        var(--ColorPrimary4))fixed;
+    color: var(--ColorDefault1);
 }
 
-#calculadora-app {
-    width: 250px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.main-content {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
 }
 
-#bloco-painel {
-    width: 100%;
-    padding: 100px 5px 10px 5px;
-    text-align: center;
+.body-calculator {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem;
 }
 
-#painel-banco {
-    height: 40px;
-    padding: 5px;
-    font-size: 20px;
-    color: var(--cor1);
+.container-panel {
+    display: grid;
+    justify-items: center;
 }
 
-#painel-aviso {
-    height: 30px;
-    padding: 5px;
-    font-size: 15px;
-    color: var(--cor3);
+.panel-output-historic {
+    color: var(--ColorGray1);
+    font-size: 1.5rem;
+    height: 2rem;
 }
 
-#painel-fronte {
-    height: 60px;
-    font-size: 50px;
-    padding: 5px;
-    color: var(--cor0);
-    transition-duration: 0.5s;
+.panel-output-main {
+    font-size: 2.5rem;
+    height: 2.5rem;
+    transition-duration: 0.1s;
+    letter-spacing: 0.2rem;
 }
 
-#bloco-teclado { 
-    text-align: center;
+.container-keyboard {
+    display: grid;
+    grid-template-areas: 
+        'kb-config kb-config kb-config' 
+        'kb-numbers kb-numbers kb-symbols'
+        'kb-numbers kb-numbers kb-symbols'
+    ;
+    width: 244px;
+    margin: 0 auto;
 }
 
-.botao {
-    width: 50px;
-    height: 50px;
-    margin: 4px;
-    border: none;
-    border-radius: 10px;
-    background: none;
-    transition-duration: 0.3s;
+.keyboard-config {
+    display: grid;
+    grid-area: kb-config;
+    grid-template-columns: auto auto auto;
+    justify-items: center;
 }
 
-.botao:hover {
-    background-color: var(--cor4);
+.keyboard-numbers {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-area: kb-numbers;
 }
 
-.config {color: var(--cor3);}
+.keyboard-symbols {
+    display: grid;
+    grid-area: kb-symbols;
+}
 
-.numero {color: var(--cor0);}
+.keyboard-config .btn-default {
+    color: var(--ColorSecondary2);
+    font-size: 1rem;
+}
 
-.operador {color: var(--cor2);}
+.keyboard-symbols .btn-default {
+    color: var(--ColorSecondary1);
+}
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --corFundo1: #00ffd9;
-        --corFundo2: #7ef4ff;
-        --corFundo3: #ffffff;
-        --cor0: rgb(26, 0, 75);
-        --cor1: gray;
-        --cor2: #168500;
-        --cor3: red;
-        --cor4: #24cfd4;
+.btn-default {
+    background-color: transparent;
+    border-radius: 0.5rem;
+    color: var(--ColorDefault1);
+    font-size: 1.2rem;
+    font-weight: bold;
+    min-height: 3rem;
+    transition-duration: 0.2s;
+    width: 3rem;
+}
+
+.btn-default:hover {
+    background-color: var(--ColorPrimary3);
+}
+
+@media (max-width: 244px) {
+    * {
+        font-size: clamp(8px, 12px + 0.5vw, 16px);
     }
 }

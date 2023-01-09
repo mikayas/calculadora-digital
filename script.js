@@ -1,106 +1,103 @@
-var painel = document.getElementById("painel-fronte");
-var painel_a = document.getElementById("painel-aviso");
-var painel_b = document.getElementById("painel-banco");
+const outputMain = document.getElementById("output-main");
+const outputWarning = document.getElementById("output-warning");
+const outputHistoric = document.getElementById("output-historic");
 
-function on() {
-    painel.innerHTML = "";
-    painel_b.innerHTML = "";
-    painel_a.style.visibility = "hidden";
-    painel_b.style.visibility = "hidden";
+var fullLengthOutputMain = 20;
+var halfLengthOutputMain = 11;
+var fullSizeOutputMain = "2.5rem";
+var halfSizeOutputMain = "1.5rem";
+
+
+function clearAll() {
+    outputMain.innerHTML = "";
+    outputWarning.innerHTML = "";
+    outputHistoric.innerHTML = "";
 }
 
-function inserir(char) {
-    var resul = painel.innerHTML;
-    if(resul.length <= 15) {
-        document.getElementById("painel-fronte").innerHTML = resul + char;
-        painel_a.style.visibility = "hidden";
-    }
-    else {
-        painel_a.innerHTML = "limite atingido";
-        painel_a.style.visibility = "visible";
-    }
-}
-
-function virgula(char) {
-    var resul = painel.innerHTML;
-    if((resul.split('.').length - 1) < 1 && resul.length <= 14) {
-        document.getElementById("painel-fronte").innerHTML = resul + char;
-        painel_a.style.visibility = "hidden";
-        if(painel.innerHTML.indexOf(".") == 0) {
-            painel.innerHTML = "0."
-        }
-    }
-    else {
-        if(resul.length > 14) {
-            painel_a.innerHTML = "limite atingido";
-        }
-        else {
-            painel_a.innerHTML = "já adicionado";
-        }
-        painel_a.style.visibility = "visible";
-    }
-}
-
-function apagar() {
-    var resul = painel.innerHTML;
-    document.getElementById("painel-fronte").innerHTML = resul.slice(0, -1);
-    painel_a.style.visibility = "hidden";
-}
-
-function voltar() {
-    var pf = painel.innerHTML;
-    var pb = painel_b.innerHTML;
-    if(pf !== "" && pb !== "") {
-        painel.innerHTML = pb;
-        painel_b.innerHTML = pf; 
-    }
-}
-
-function operador(char) {
-    var resul = painel.innerHTML;
+function calculate() {
     if(
-        resul.slice(-1) !== "+" && 
-        resul.slice(-1) !== "-" &&
-        resul.slice(-1) !== "*" && 
-        resul.slice(-1) !== "/" &&
-        resul.slice(-1) !== "" && 
-        resul.slice(-1) !== "."
+        outputMain.innerHTML.slice(-1) == "+" ||
+        outputMain.innerHTML.slice(-1) == "-" ||
+        outputMain.innerHTML.slice(-1) == "*" ||
+        outputMain.innerHTML.slice(-1) == "/" ||
+        outputMain.innerHTML.slice(-1) == "."  
     ){
-        document.getElementById("painel-fronte").innerHTML = resul + char;
+        outputMain.innerHTML = outputMain.innerHTML.slice(0, -1);
+    }
+    outputHistoric.innerHTML = outputMain.innerHTML;
+    outputMain.innerHTML = eval(outputMain.innerHTML);
+}
+
+function altPanels() {
+    const valueOutputMain = outputMain.innerHTML;
+    const valueOutputHistoric = outputHistoric.innerHTML;
+    
+    outputMain.innerHTML = valueOutputHistoric;
+    outputHistoric.innerHTML = valueOutputMain;
+}
+
+function deleteChar() {
+    outputMain.innerHTML = outputMain.innerHTML.slice(0, -1);
+}
+
+function inputValuesInPanels() {
+    outputMain.style.fontSize = fullSizeOutputMain;
+    if(outputMain.innerHTML.length > halfLengthOutputMain){
+        outputMain.style.fontSize = halfSizeOutputMain;   
+    }
+    if(outputMain.innerHTML.length < fullLengthOutputMain) {
+        outputMain.style.color = "var(--ColorDefault1)";
+        outputWarning.innerHTML = "";
+    }else if(outputMain.innerHTML.length == fullLengthOutputMain) {
+        outputWarning.style.color = "var(--ColorSecondary2)";
+        outputMain.style.color = "var(--ColorSecondary2)";
+    }
+    else {
+        outputWarning.innerHTML = "max limit";
+        outputMain.innerHTML = outputMain.innerHTML.slice(0, -1);
     }
 }
 
-function calcular() {
-    var resul = document.getElementById("painel-fronte").innerHTML;
+function addInOutputMain(char) {
     if(
-        resul !== "" &&
-        resul.slice(-1) !== "+" && 
-        resul.slice(-1) !== "-" &&
-        resul.slice(-1) !== "*" && 
-        resul.slice(-1) !== "/" &&
-        resul.slice(-1) !== "."
-    ) {
-        painel_b.innerHTML = painel.innerHTML;
-        painel_b.style.visibility = "visible";
-        painel.innerHTML = eval(resul);
+        (outputMain.innerHTML == "0") 
+        ||
+        (outputMain.innerHTML.slice(-2) == "+0" ||
+        outputMain.innerHTML.slice(-2) == "-0" ||
+        outputMain.innerHTML.slice(-2) == "*0" ||
+        outputMain.innerHTML.slice(-2) == "/0") 
+    ){
+        outputMain.innerHTML = outputMain.innerHTML.slice(0, -1);
+    }
+    outputMain.innerHTML = outputMain.innerHTML + char;
+}
+
+function addSymbolInOutputMain(char) {
+    if(outputMain.innerHTML.length > 0) {
+        if(
+            outputMain.innerHTML.slice(-1) == "+" ||
+            outputMain.innerHTML.slice(-1) == "-" ||
+            outputMain.innerHTML.slice(-1) == "*" ||
+            outputMain.innerHTML.slice(-1) == "/" ||
+            outputMain.innerHTML.slice(-1) == "."  
+        ){
+            outputMain.innerHTML = outputMain.innerHTML.slice(0, -1);
+        }
+        outputMain.innerHTML = outputMain.innerHTML + char;
     }
 }
 
-function geral() {
-    var resul = painel.innerHTML;
-    if(resul.length <= 7) {
-        painel.style.fontSize = "50px";
-    }
-    else if(resul.length <= 11) {
-        painel.style.fontSize = "30px";
-    }
-    else if(resul.length <= 14) {
-        painel.style.fontSize = "25px";
+function addPointInOutputMain(char) {
+    if(outputMain.innerHTML.length > 0) {
+        if(
+            outputMain.innerHTML.slice(-1) != "+" &&
+            outputMain.innerHTML.slice(-1) != "-" &&
+            outputMain.innerHTML.slice(-1) != "*" &&
+            outputMain.innerHTML.slice(-1) !== "/" &&
+            outputMain.innerHTML.slice(-1) != "."  
+        ){
+            outputMain.innerHTML = outputMain.innerHTML + char;
+        }
+        
     }
 }
-
-/* problemas
-    // substuir: não adicionar "." se o ultimo indice for "."
-    // adicionar: límite de caracter nos operadores em geral
-    // modificar tema claro
-*/

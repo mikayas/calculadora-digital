@@ -4,47 +4,45 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width initial-scale=1"/>
         <link rel="stylesheet" href="style.css">
-        <title>calculadora digital</title>
+        <title>html calculator</title>
     </head>
     <body>
-        <div id="calculadora-app" onclick="geral()">
-            <div id="bloco-painel">
-                <div id="painel-banco"></div>
-                <div id="painel-aviso"></div>
-                <div id="painel-fronte"></div>
-            </div>
-            <div id="bloco-teclado">
-                <div class="teclado-linha">
-                    <button class="botao config" onclick="on()">on</button>
-                    <button class="botao config" onclick="voltar()">c</button>
-                    <button class="botao config" onclick="apagar()">del</button>
-                    <button class="botao operador" onclick="operador('/')">/</button>
+        <main class="main-content">
+            <div class="body-calculator">
+                <div class="container-panel">
+                    <div id="output-historic" class="panel-output-historic"></div>
+                    <div id="output-main" class="panel-output-main"></div>
+                    <div id="output-warning" class="panel-output-warning"></div>
                 </div>
-                <div class="teclado-linha">
-                    <button class="botao numero" onclick="inserir('7')">7</button>
-                    <button class="botao numero" onclick="inserir('8')">8</button>
-                    <button class="botao numero" onclick="inserir('9')">9</button>
-                    <button class="botao operador" onclick="operador('*')">x</button>
-                </div>
-                <div class="teclado-linha">
-                    <button class="botao numero" onclick="inserir('4')">4</button>
-                    <button class="botao numero" onclick="inserir('5')">5</button>
-                    <button class="botao numero" onclick="inserir('6')">6</button>
-                    <button class="botao operador" onclick="operador('+')">+</button>
-                </div>
-                <div class="teclado-linha">
-                    <button class="botao numero" onclick="inserir('1')">1</button>
-                    <button class="botao numero" onclick="inserir('2')">2</button>
-                    <button class="botao numero" onclick="inserir('3')">3</button>
-                    <button class="botao operador" onclick="operador('-')">-</button>
-                </div>
-                <div class="teclado-linha">
-                    <button class="botao numero" onclick="inserir('0')">0</button>
-                    <button class="botao numero" onclick="virgula('.')">•</button>
-                    <button class="botao operador" onclick="calcular()">=</button>
+                <div class="container-keyboard" onclick="inputValuesInPanels()">
+                    <div class="keyboard-config">
+                        <button class="btn-default" onclick="clearAll()">clear</button>
+                        <button class="btn-default" onclick="altPanels()">back</button>
+                        <button class="btn-default" onclick="deleteChar()">del</button>
+                    </div>
+                    <div class="keyboard-numbers">
+                        <button class="btn-default" onclick="addInOutputMain('7')">7</button>
+                        <button class="btn-default" onclick="addInOutputMain('8')">8</button>
+                        <button class="btn-default" onclick="addInOutputMain('9')">9</button>
+                        <button class="btn-default" onclick="addInOutputMain('4')">4</button>
+                        <button class="btn-default" onclick="addInOutputMain('5')">5</button>
+                        <button class="btn-default" onclick="addInOutputMain('6')">6</button>
+                        <button class="btn-default" onclick="addInOutputMain('1')">1</button>
+                        <button class="btn-default" onclick="addInOutputMain('2')">2</button>
+                        <button class="btn-default" onclick="addInOutputMain('3')">3</button>
+                        <button class="btn-default" onclick="addPointInOutputMain('.')">.</button>
+                        <button class="btn-default" onclick="addInOutputMain('0')">0</button>
+                        <button class="btn-default" onclick="calculate()">=</button>
+                    </div>
+                    <div class="keyboard-symbols">
+                        <button class="btn-default" onclick="addSymbolInOutputMain('/')">&divide;</button>
+                        <button class="btn-default" onclick="addSymbolInOutputMain('-')">&ndash;</button>
+                        <button class="btn-default" onclick="addSymbolInOutputMain('*')">&times;</button>
+                        <button class="btn-default" onclick="addSymbolInOutputMain('+')">+</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
         <script src="script.js"></script>
     </body>
 </html>
